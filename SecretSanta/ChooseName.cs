@@ -16,61 +16,45 @@ namespace SecretSanta
             return randomNumber;
         }
 
-        public bool CheckPartners(string yourName, string partner1, string partner2, string otherName)
+        public string CheckName(string yourName, Person otherName)
         {
-            if (yourName.Equals(partner1, StringComparison.OrdinalIgnoreCase) && otherName.Equals(partner2, StringComparison.OrdinalIgnoreCase))
-            {
-                return true;
-            }
 
-            return false;
-        }
+            if (yourName == otherName.Partner)
+            {
+                return "Incorrect match. Please Try Again!";
+            } 
 
-        public string CheckName(string yourName, string otherName)
 
-        {
-            //CheckPartners(yourName, "Ian", "Lizzy", otherName);
 
-            if (yourName == "ian" && otherName == "lizzy")
+            //if (yourName == "ian" && otherName == "lizzy" || yourName == "lizzy" && otherName == "ian")
+            //{
+            //    return "Incorrect match. Please Try Again!";
+            //}
+            //if (yourName == "phil" && otherName == "philippa" || yourName == "philippa" && otherName == "phil")
+            //{
+            //    return "Incorrect match. Please Try Again!";
+            //}
+            //if (yourName == "lee" && otherName == "julie" || yourName == "julie" && otherName == "lee")
+            //{
+            //    return "Incorrect match. Please Try Again!";
+            //}
+
+            if (yourName != otherName.Name)
             {
-                return "Incorrect match. Please Try Again!";
+                return "Get a present for: " + otherName.Name;
             }
-            if (yourName == "lizzy" && otherName == "ian")
-            {
-                return "Incorrect match. Please Try Again!";
-            }
-            if (yourName == "phil" && otherName == "philippa")
-            {
-                return "Incorrect match. Please Try Again!";
-            }
-            if (yourName == "philippa" && otherName == "phil")
-            {
-               return "Incorrect match. Please Try Again!";
-            }
-            if (yourName == "lee" && otherName == "julie")
-            {
-                return "Incorrect match. Please Try Again!";
-            }
-            if (yourName == "julie" && otherName == "lee")
-            {
-                return "Incorrect match. Please Try Again!";
-            }
-            if (yourName != otherName)
-            {
-                return "Get a present for: " + otherName;
-            }
-            if (yourName == otherName)
+            if (yourName == otherName.Name)
             {
                 return "Please try again";
             }
 
             return "no name for you";
         }
-
+        // Add new logic to do all name selections without asking for name
         public string AskForName(List<string> completedNames)
         {
             Console.WriteLine("Please enter your name?");
-            string yourName = Console.ReadLine();
+            string yourName = Console.ReadLine().ToLower();
 
             if (completedNames.Contains(yourName))
             {

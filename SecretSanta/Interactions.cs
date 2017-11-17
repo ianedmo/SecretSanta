@@ -20,5 +20,23 @@ namespace SecretSanta
 
             Console.Clear();
         }
+
+        public bool ContinueOrExit()
+        {
+            Console.WriteLine("Press 'Enter' to add anther name or any key to continue.");
+            ConsoleKeyInfo keyInfo = Console.ReadKey();
+
+            if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+
+            if (keyInfo.Key != ConsoleKey.Enter)
+            {
+                return false;
+            }
+
+            return false;
+        }
     }
 }

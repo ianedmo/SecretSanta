@@ -10,8 +10,26 @@ namespace SecretSanta
     {
         static void Main(string[] args)
         {
-            List<string> names = new List<string>(new string[] { "ian", "lizzy", "philippa", "phil", "julie", "lee" });
+            
+            //Console.WriteLine("Please enter the name");
+            //var numberOfUsers = Console.ReadLine();
+
+            //List<string> names = new List<string>(new string[] { "ian", "lizzy", "philippa", "phil", "julie", "lee" });
+            List<Person> names = new List<Person>();
             List<string> completedNames = new List<string>();
+
+            var anotherName = true;
+
+            Console.WriteLine("Welcome to the Secret Santa Generator.");
+
+            while (anotherName == true)
+            {
+                Person p = new Person();
+                p.CreatePerson(names);
+
+                Interactions interact = new Interactions();
+                anotherName = interact.ContinueOrExit();
+            }
 
             int numberOfNames = names.Count();
 
@@ -36,7 +54,6 @@ namespace SecretSanta
                 }
 
                 Console.WriteLine(message);
-
                 names.RemoveAt(randomNumber);
 
                 numberOfNames = names.Count();
