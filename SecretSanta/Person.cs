@@ -27,15 +27,8 @@ namespace SecretSanta
             Name = Console.ReadLine();
             Console.WriteLine("Please enter the name of anyone they should not draw");
             Partner = Console.ReadLine();
-
-            //Person person = new Person(Name, Partner);
-            //if (names.Contains(person.Name)
-            //{
-
-            //}
-
+       
             names.Add(new Person(Name, Partner));
-
         }
     }
 }
