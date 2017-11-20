@@ -17,14 +17,19 @@ namespace SecretSanta
             this.Name = name;
             this.Partner = partner;
         }
-        //Other properties, methods, events...
 
         public void CreatePerson(List<Person> names)
         {
-            Console.WriteLine("Enter the names");
+            Console.WriteLine("Enter a name");
             Name = Console.ReadLine();
             Console.WriteLine("Please enter the name of anyone they should not draw");
             Partner = Console.ReadLine();
+
+            //Person person = new Person(Name, Partner);
+            //if (names.Contains(person.Name)
+            //{
+
+            //}
 
             names.Add(new Person(Name, Partner));
 

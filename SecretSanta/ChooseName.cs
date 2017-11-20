@@ -16,34 +16,18 @@ namespace SecretSanta
             return randomNumber;
         }
 
-        public string CheckName(string yourName, Person otherName)
+        public string CheckName(string yourName, string otherName)
         {
 
-            if (yourName == otherName.Partner)
+            if (yourName == otherName)
             {
                 return "Incorrect match. Please Try Again!";
             } 
-
-
-
-            //if (yourName == "ian" && otherName == "lizzy" || yourName == "lizzy" && otherName == "ian")
-            //{
-            //    return "Incorrect match. Please Try Again!";
-            //}
-            //if (yourName == "phil" && otherName == "philippa" || yourName == "philippa" && otherName == "phil")
-            //{
-            //    return "Incorrect match. Please Try Again!";
-            //}
-            //if (yourName == "lee" && otherName == "julie" || yourName == "julie" && otherName == "lee")
-            //{
-            //    return "Incorrect match. Please Try Again!";
-            //}
-
-            if (yourName != otherName.Name)
+            if (yourName != otherName)
             {
-                return "Get a present for: " + otherName.Name;
+                return yourName + " - Get a present for: " + otherName;
             }
-            if (yourName == otherName.Name)
+            if (yourName == otherName)
             {
                 return "Please try again";
             }
@@ -51,7 +35,7 @@ namespace SecretSanta
             return "no name for you";
         }
         // Add new logic to do all name selections without asking for name
-        public string AskForName(List<string> completedNames)
+        public string AskForName(List<Person>names, List<string> completedNames)
         {
             Console.WriteLine("Please enter your name?");
             string yourName = Console.ReadLine().ToLower();
@@ -63,6 +47,32 @@ namespace SecretSanta
             }
 
             return yourName;
+        }
+
+        public void MakeSelections(List<Person>names, List<string> completedNames, int totalNames)
+        {
+            foreach (var name in names)
+            {
+                int randomNumber = GetName(totalNames);
+
+                if (completedNames.Contains(name.Name))
+                {
+                    continue;
+                }
+
+                var message = CheckName(name.Name, names[randomNumber].Name);
+
+                while (message == "Please try again" || message == "Incorrect match. Please Try Again!")
+                {
+                    randomNumber = GetName(totalNames);
+                    message = CheckName(name.Name, names[randomNumber].Name);
+                }
+
+                completedNames.Add(name.Name);
+
+                Console.WriteLine(message);
+                names.RemoveAt(randomNumber);
+            }
         }
     }
 }
