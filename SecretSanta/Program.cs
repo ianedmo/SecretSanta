@@ -19,7 +19,7 @@ namespace SecretSanta
 
             while (anotherName == true)
             {
-                Person p = new Person();
+                dynamic p = new Person();
                 p.CreatePerson(names);
 
                 Interactions interact = new Interactions();
@@ -33,29 +33,6 @@ namespace SecretSanta
                 ChooseName name = new ChooseName();
 
                 name.MakeSelections(names, completedNames, numberOfNames);
-
-                //int randomNumber = name.GetName(numberOfNames);
-                //string yourName = name.AskForName(completedNames);
-                //if (yourName == null)
-                //{
-                //    continue;
-                //}
-
-                //completedNames.Add(yourName);
-                //string message = name.CheckName(yourName, names[randomNumber]);
-
-                //while (message == "Please try again" || message == "Incorrect match. Please Try Again!")
-                //{
-                //    randomNumber = name.GetName(numberOfNames);
-                //    message = name.CheckName(yourName, names[randomNumber]);
-                //}
-
-                
-
-                //Console.WriteLine(message);
-                //names.RemoveAt(randomNumber);
-
-                numberOfNames = names.Count();
 
                 Interactions interact = new Interactions();
                 interact.ClearConsole();

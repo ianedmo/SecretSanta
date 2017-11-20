@@ -10,6 +10,9 @@ namespace SecretSanta
     {
         public string Name { get; set; }
         public string Partner { get; set; }
+        public string SecretSanta { get; set; }
+        public bool HasSelected { get; set; }
+        public bool HasBeenSelected { get; set; }
 
         public Person() { }
         public Person(string name, string partner)
