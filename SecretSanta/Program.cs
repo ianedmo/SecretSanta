@@ -22,21 +22,18 @@ namespace SecretSanta
                 dynamic p = new Person();
                 p.CreatePerson(names);
 
-                Interactions interact = new Interactions();
-                anotherName = interact.ContinueOrExit();
+                Interactions consoleInteract = new Interactions();
+                anotherName = consoleInteract.ContinueOrExit();
             }
 
             int numberOfNames = names.Count();
+            
+            ChooseName name = new ChooseName();
 
-            while (numberOfNames != 0)
-            {
-                ChooseName name = new ChooseName();
+            name.MakeSelections(names, completedNames, numberOfNames);
 
-                name.MakeSelections(names, completedNames, numberOfNames);
-
-                Interactions interact = new Interactions();
-                interact.ClearConsole();
-            }
+            Interactions interact = new Interactions();
+            interact.ClearConsole();
         }
     }
 }

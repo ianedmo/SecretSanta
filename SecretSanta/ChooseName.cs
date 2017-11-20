@@ -33,39 +33,34 @@ namespace SecretSanta
 
             return "no name for you";
         }
-        // Add new logic to do all name selections without asking for name
-        //public string AskForName(List<Person>names, List<string> completedNames)
-        //{
-        //    Console.WriteLine("Please enter your name?");
-        //    string yourName = Console.ReadLine().ToLower();
-
-        //    if (completedNames.Contains(yourName))
-        //    {
-        //        Console.WriteLine("You've already seleted a secret santa. Go away!");
-        //        return null;
-        //    }
-
-        //    return yourName;
-        //}
 
         public void MakeSelections(List<Person>names, List<string> completedNames, int totalNames)
         {
             for (int i = 0; i < names.Count; i++)
             {
-                int randomNumber = GetName(totalNames);
+                bool validSelection = false;
+                int randomNumber = GetName(totalNames); ;
+                string message = "";
 
-                var message = CheckName(names[i].Name, names[i].Partner, names[randomNumber].Name);
-
+                while (validSelection == false)
+                {
+                    randomNumber = GetName(totalNames);
+                    if (names[randomNumber].HasBeenSelected == false)
+                    {
+                        validSelection = true;
+                        message = CheckName(names[i].Name, names[i].Partner, names[randomNumber].Name);
+                    }                    
+                }
+                
                 while (message == "Please try again" || message == "Incorrect match. Please Try Again!")
                 {
                     randomNumber = GetName(totalNames);
-                    if (names[randomNumber].HasBeenSelected == true)
+                    if (names[randomNumber].HasBeenSelected == false)
                     {
-                        continue;
+                        validSelection = true;
+                        message = CheckName(names[i].Name, names[i].Partner, names[randomNumber].Name);
                     }
-                    message = CheckName(names[i].Name, names[i].Partner, names[randomNumber].Name);
                 }
-
                 
                 names[i].SecretSanta = names[randomNumber].Name;
                 names[i].HasSelected = true;
@@ -73,7 +68,6 @@ namespace SecretSanta
 
                 Console.WriteLine(message);
                 totalNames = names.Count();
-
             }
         }
     }
